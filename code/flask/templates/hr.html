@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: Snow;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: GhostWhite;
+            border-radius: 8px;
+            box-shadow: 0 0 10px black(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: DimGray;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: calc(70% - 10px);
+            height: 30px;
+            padding: 5px;
+            border: 1px solid LightGrey;
+            border-radius: 4px;
+        }
+        button {
+            width: 20%;
+            height: 40px;
+            margin-left: 10px;
+            background-color: ForestGreen;
+            color: FloralWhite;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: LimeGreen;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid LightGrey;
+        }
+        th {
+            background-color: Gainsboro;
+        }
+        tr:hover {
+            background-color: WhiteSmoke;
+        }
+        button.send-mail {
+            width: 100%;
+            height: 40px;
+            margin-top: 10px;
+            background-color: ForestGreen;
+            color: FloralWhite;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button.send-mail:hover {
+            background-color: LimeGreen;
+        }
+        .phone-number {
+            white-space: nowrap;
+        }
+    </style>
+    <title>HR Page</title>
+</head>
+<body>
+    <h1 style="margin-top: 60px; color: black">Hush Hush Recruitement</h1>
+    <form method="GET" action="/logout">
+        <button style="background-color: Red; width:100px; position:absolute; right:15px; top:10px;" type="submit">Logout</button>
+    </form>
+    <div class="container">
+        <h1 style="color: black;"></h1>
+        <form method="POST" action="/search">
+            <input type="text" name="searched_results" required placeholder="Search for required skillset" autocomplete="off"/>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</body>
+</html>

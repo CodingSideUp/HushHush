@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TR Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: snow;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: ghostwhite;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: dimgray;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: calc(70% - 10px);
+            height: 30px;
+            padding: 5px;
+            border: 1px solid lightgray;
+            border-radius: 4px;
+        }
+        button {
+            width: 20%;
+            height: 40px;
+            margin-left: 10px;
+            background-color: forestgreen;
+            color: floralwhite;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: limegreen;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center; /* Aligning content to center */
+            border-bottom: 1px solid LightGrey;
+            word-wrap: break-word;
+            max-width: 200px;
+        }
+        th {
+            background-color: Gainsboro;
+        }
+        tr:hover {
+            background-color: whitesmoke;
+        }
+        button.send-mail {
+            width: 100%;
+            height: 40px;
+            margin-top: 10px;
+            background-color: forestgreen;
+            color: floralwhite;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button.send-mail:hover {
+            background-color: limegreen;
+        }
+        .google-form-button {
+            width: 100%;
+            height: 40px;
+            margin-top: 20px;
+            background-color: royalblue;
+            color: floralwhite;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+        .google-form-button:hover {
+            background-color: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="margin-top: 60px; color: black">Hush Hush Recruitement</h1>
+    <form method="GET" action="/logout">
+        <button style="background-color:red; width:100px; position:absolute; right:15px; top:10px;" type="submit">Logout</button>
+    </form>
+    <div class="container">
+        <h1 style="color: black;">Candidate details</h1>
+        <a href="https://docs.google.com/forms/d/1dWyFJH0_Vtaouokih4PsFqAEb8ayfy1r5HcyV8HMWTM/edit#responses" class="google-form-button" target="_blank">Google Form Link</a>
+        <!-- Add the anchor tag above to create the button linking to the Google Form -->
+        {% if stackShow %}
+        <table>
+            <thead>
+                <th colspan="6">StackOverflow Candidates</th>
+                <tr>
+                    <th>Account ID of the Candidate</th>
+                    <th>User ID of the Candidate</th>
+                    <th>Link of the Candidate</th>
+                    <th>Display Name of the Candidate</th>
+                    <th style="text-align: center;">Selected Candidate</th>
+                    <th style="text-align: center;">Rejected Candidate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users[0] %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                    <td>{{ user[3] }}</td>
+                    <td>
+                        <form action="/successmail" method="post">
+                            <input type="hidden" name="mailid" value="adhirath.balan@gmail.com">
+                            <button type="submit" style="width: 100px;" class="send-mail">Send Interview Mail</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/rejectedmail" method="post">
+                            <input type="hidden" name="mailid" value="adhirath.balan@gmail.com">
+                            <button type="submit" style="width: 100px;" class="send-mail">Send Rejected Mail</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h2>No candidate from StackOverflow was selected for the given skillset by the HR</h2>
+        {% endif %}
+        {% if gitShow %}
+        <table>
+            <thead>
+                <th colspan="6">GitHub Candidates</th>
+                <tr>
+                    <th>Username of the Candidate</th>
+                    <th>Repository Name of the Candidate</th>
+                    <th>Repository URL of the Candidate</th>
+                    <th>Languages used in the Repository by the Candidate</th>
+                    <th style="text-align: center;">Selected Candidate</th>
+                    <th style="text-align: center;">Rejected Candidate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users[1] %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td class="phone-number">{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                    <td>{{ user[3] }}</td>
+                    <td>
+                        <form action="/successmail" method="post">
+                            <input type="hidden" name="mailid" value="adhirath.balan@gmail.com">
+                            <button type="submit" style="width: 100px;" class="send-mail">Send Interview Mail</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/rejectedmail" method="post">
+                            <input type="hidden" name="mailid" value="adhirath.balan@gmail.com">
+                            <button type="submit" style="width: 100px;" class="send-mail">Send Rejected Mail</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h2>No candidate from GitHub was selected for the given skillset by the HR</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
