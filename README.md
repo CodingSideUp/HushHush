@@ -10,5 +10,7 @@ Once the pre-processing was done, I have used unsupervsed Maachine learning algo
 I have then implemented a number of other ML algorithms to see which model was giving me more accurate results in terms of GitHub and StackOverflow users.
 This in turn gave me a strong pool of candidates to choose from for recruitment.
 
+I have also built a backend interface using Flask which in turn is the candidate information visible to the HR. She can further filter out the candidates using features such as 'programming languages' etc., The HR could then send out emails to the candidates that fit the requirement/profile.
+
 This was my idea of implementing the project.
 All ideas and suggestions or comments are welcome.
